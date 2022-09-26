@@ -1,4 +1,5 @@
-﻿@model CoombsBank.Models.LoginModel
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CoombsBank.Models.LoginModel
 
 @{
     ViewData["Title"] = "SignIn";
@@ -22,14 +23,14 @@
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Sign In" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div class="mt-4">
-    <a asp-action="Registration">Register new User</a>
+    <a asp-action="Registration">Register new user</a>
 </div>
 
 @section Scripts {
