@@ -1,9 +1,33 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model CoombsBank.Models.User;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Index";
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome, you have succesfully signed in</h1>
-
+<div class="d-flex flex-row align-items-center text-center w-100">
+    <h1 class="display-4">Welcome @Model.FirstName</h1>
+    <div class="d-flex flex-row bg-light ms-auto me-4 px-4 py-2 rounded-pill">
+        <button class="btn btn-outline-secondary rounded-pill me-4">
+            @Html.ActionLink("Account Overview", 
+                "AccountOverview", 
+                null, 
+                null,
+                new { @style="color: black; text-decoration: none !important" })
+        </button>
+        <button class="btn btn-warning rounded-pill me-4">
+            @Html.ActionLink("Deposit", 
+                "Deposit", 
+                null, 
+                null,
+                new { @style="color: black; text-decoration: none !important" })
+        </button>
+        <button class="btn btn-warning rounded-pill">
+            @Html.ActionLink("Transfer", 
+                "Transfer", 
+                null, 
+                null,
+                new { @style="color: black; text-decoration: none !important" })
+        </button>
+    </div>
     <a asp-action="LogOut">Sign Out</a>
 </div>
+

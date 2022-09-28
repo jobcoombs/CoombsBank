@@ -18,9 +18,9 @@ public class FirestoreProvider
         await document.SetAsync(entity, cancellationToken: ct);
     }
 
-    public async Task<T> Get<T>(string id, CancellationToken ct) where T : IFirebaseEntity
+    public async Task<T> Get<T>(string docId, CancellationToken ct) where T : IFirebaseEntity
     {
-        var document = _fireStoreDb.Collection(typeof(T).Name).Document(id);
+        var document = _fireStoreDb.Collection(typeof(T).Name).Document(docId);
         var snapshot = await document.GetSnapshotAsync(ct);
         return snapshot.ConvertTo<T>();
     }
