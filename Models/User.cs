@@ -22,6 +22,11 @@ public class User : IFirebaseEntity
     
     [FirestoreProperty]
     public string IbanNo { get; set; }
+
+    [FirestoreProperty]
+    public string Balance { get; set; }
+    
+    public decimal ActualBalance { get; set; }
     
     public User(string firstName, string lastName, string email, string ibanNo)
     {

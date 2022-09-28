@@ -1,0 +1,42 @@
+﻿@model CoombsBank.Models.User;
+@{
+    ViewData["Title"] = "Deposit";
+}
+<div class="d-flex justify-content-between align-items-center py-2 px-4 bg-light rounded-pill mb-4">
+    <h1>@ViewData["Title"]</h1>
+    <button class="btn btn-sm btn-secondary px-2 rounded-pill">
+        @Html.ActionLink("Back", 
+            "Index", 
+            null, 
+            null,
+            new { @style="color: white; text-decoration: none !important" })
+    </button>
+</div>
+
+<h4 class="mx-4">Current account balance: $@Model.Balance</h4>
+
+<div class="mx-4 mt-4">
+    <form action="DepositMoneyToAccount">
+        <div class="d-flex flex-column">
+            <p>Enter an amount you would like to deposit</p>
+            
+            <small class="fw-bold mb-2">Note: There is a 0.1% fee for every deposit made, which will be deducted from the amount entered.</small>
+            
+            <div class="d-flex flex-column input-group mb-2">
+                <label>Card number</label>
+                <input style="width: 150px" type="number" disabled/>
+            </div>
+            
+            <div class="d-flex flex-column input-group mb-2">
+                <label>Deposit amount</label>
+                <input style="width: 150px" 
+                       type="number" 
+                       name="amount" 
+                       oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null" 
+                       required>
+            </div>
+            
+            <input style="width: 150px" type="submit" value="Deposit to account"/>
+        </div>
+    </form>
+</div>
