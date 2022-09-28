@@ -1,3 +1,8 @@
+using System.Text.Json;
+using CoombsBank.Constants;
+using CoombsBank.Providers;
+using Google.Cloud.Firestore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +13,17 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+var firebaseJson = JsonSerializer.Serialize(new FirebaseSettings());
+
+builder.Services.AddSingleton(_ => new FirestoreProvider(
+    new FirestoreDbBuilder 
+    { 
+        ProjectId = new FirebaseSettings().ProjectId,
+        JsonCredentials = firebaseJson
+    }.Build()
+));
+
 
 var app = builder.Build();
 
